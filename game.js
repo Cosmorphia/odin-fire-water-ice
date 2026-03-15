@@ -45,3 +45,27 @@ function compareInputs() {
     }
 
 }
+
+// update score and round based on winCondition
+function updateScoreAndRound() {
+    if (winCondition === "invalid") {
+        console.log("Invalid input. Please enter fire, water, or ice");
+    } else if (winCondition === "tie") {
+        console.log("It's a tie!");
+    } else if (winCondition === "human") {
+        humanInput = capitalizeFirstLetter(humanInput);
+        console.log(`Human wins! ${humanInput} beats ${computerInput}.`);
+        humanScore++;
+        gameRound++;
+    } else {
+        computerInput = capitalizeFirstLetter(computerInput);
+        console.log(`Computer wins! ${computerInput} beats ${humanInput}.`);
+        computerScore++;
+        gameRound++;
+    }
+}
+
+// capitalize first letter of string
+function capitalizeFirstLetter(string) {
+    return string = string.charAt(0).toUpperCase() + string.slice(1);
+}
