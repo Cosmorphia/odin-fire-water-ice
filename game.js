@@ -5,12 +5,10 @@ let gameRound = 1;
 
 // display header and instructions
 console.log("%cFire, Water, Ice", "font-size:26px");
-console.log('Welcome! The first player to 5 points wins. Type "play" to start the game.')
-
-// prompt human input and return lowercase
-function getHumanInput() {
-    return humanInput = prompt("Choose fire, water, or ice:").toLowerCase();
-}
+console.log(`
+The first player to 5 points wins.
+Type fire, water, or ice to start the game.
+Note: choices must be in all lowercase!`);
 
 // randomize computer input and return
 function getComputerInput() {
@@ -27,14 +25,8 @@ function getComputerInput() {
 
 // compare both inputs and return result
 function compareInputs() {
-    // invalid input condition
-    if ((humanInput !== "fire")
-    && (humanInput !== "water")
-    && (humanInput !== "ice")) {
-        return winCondition = "invalid";
-    }
     // tie condition
-    else if (humanInput === computerInput) {
+    if (humanInput === computerInput) {
         return winCondition = "tie";
     }
     // human win condition
@@ -52,20 +44,18 @@ function compareInputs() {
 
 // update score and round based on winCondition
 function updateScoreAndRound() {
-    if (winCondition === "invalid") {
-        console.log("%cInvalid input. Please enter fire, water, or ice", "font-size:12px");
-    } else if (winCondition === "tie") {
-        console.log("%cIt's a tie!", "font-size: 12px");
+    gameRound++;
+
+    if (winCondition === "tie") {
+        console.log("%cIt's a tie!", "font-size: 12px; color:white;");
     } else if (winCondition === "human") {
         humanInput = capitalizeFirstLetter(humanInput);
         console.log(`%cHuman wins! ${humanInput} beats ${computerInput}.`, "font-size: 12px; color:#66ff8f");
         humanScore++;
-        gameRound++;
     } else {
         computerInput = capitalizeFirstLetter(computerInput);
         console.log(`%cComputer wins! ${computerInput} beats ${humanInput}.`, "font-size: 12px; color:#ff6666");
         computerScore++;
-        gameRound++;
     }
 }
 
@@ -79,7 +69,7 @@ function playGame() {
     if (humanScore < 5 && computerScore < 5) {
         console.clear();
         console.log(`--- Round ${gameRound} ---`);
-        console.log(`You chose ${getHumanInput()}`);
+        console.log(`You chose ${humanInput}`);
         console.log(`Computer chose ${getComputerInput()}`);
         compareInputs();
         updateScoreAndRound();
@@ -95,12 +85,12 @@ function playGame() {
 function checkScore() {
     if (humanScore === 5) {
         console.log(`%cGame over! You win!`, "font-size:18px; color:#66ff8f");
-        console.log("Type play to begin a new game.")
+        console.log("Type fire, water, or ice to begin a new game.")
     } else if (computerScore === 5) {
         console.log(`%cGame over! Computer wins!`, "font-size:18px; color:#ff6666");
-        console.log("Type play to begin a new game.")
+        console.log("Type fire, water, or ice to begin a new game.")
     } else {
-        console.log("Type play to start another round.");
+        console.log("Type fire, water, or ice to start another round.");
     }
 }
 
@@ -111,9 +101,26 @@ function resetGame() {
     gameRound = 1;
 }
 
-// listens for "play" to be entered into console
-Object.defineProperty(window, "play", {
+// listens for "fire" to be entered into console
+Object.defineProperty(window, "fire", {
   get: function () {
+      humanInput = "fire";
+      playGame();
+  }
+});
+
+// listens for "water" to be entered into console
+Object.defineProperty(window, "water", {
+  get: function () {
+      humanInput = "water";
+      playGame();
+  }
+});
+
+// listens for "ice" to be entered into console
+Object.defineProperty(window, "ice", {
+  get: function () {
+      humanInput = "ice";
       playGame();
   }
 });
