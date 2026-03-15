@@ -1,0 +1,22 @@
+// declare initial values
+let humanScore = 0;
+let computerScore = 0;
+let gameRound = 1;
+
+// prompt human input and return lowercase
+function getHumanInput() {
+    return humanInput = prompt("Choose fire, water, or ice:").toLowerCase();
+}
+
+// randomize computer input and return
+function getComputerInput() {
+    let randomNumber = Math.random();
+
+    if (randomNumber <= 0.33) {
+        return computerInput = "fire";
+    } else if (randomNumber > 0.33 && randomNumber <= 0.66) {
+        return computerInput = "water";
+    } else {
+        return computerInput = "ice";
+    }
+}
