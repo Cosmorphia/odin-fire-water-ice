@@ -69,3 +69,36 @@ function updateScoreAndRound() {
 function capitalizeFirstLetter(string) {
     return string = string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+// play until either score reaches 5, then reset
+function playGame() {
+    if (humanScore < 5 && computerScore < 5) {
+        console.clear();
+        console.log(`--- Round ${gameRound} ---`);
+        console.log(`You chose ${getHumanInput()}`);
+        console.log(`Computer chose ${getComputerInput()}`);
+        compareInputs();
+        updateScoreAndRound();
+        console.log(`Your score: ${humanScore} | Computer score: ${computerScore}`);
+        checkScore();
+    } else {
+        resetGame();
+        playGame();
+    }
+}
+
+// check overall score for a winner
+function checkScore() {
+    if (humanScore === 5) {
+        console.log(`Game over! You win!`);
+    } else if (computerScore === 5) {
+        console.log(`Game over! Computer wins!`);
+    }
+}
+
+// resets game
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    gameRound = 1;
+}
