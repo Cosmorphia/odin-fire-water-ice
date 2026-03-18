@@ -1,126 +1,126 @@
-// declare initial values
+const buttonContainer = document.querySelector(".buttonContainer");
+const fireBtn = document.querySelector("#fireBtn");
+const waterBtn = document.querySelector("#waterBtn");
+const iceBtn = document.querySelector("#iceBtn");
+const roundNumberDiv = document.querySelector(".roundNumber");
+const roundWinnerDiv = document.querySelector(".roundWinner");
+const computerInputDiv = document.querySelector(".computerInputDiv");
+const humanScoreDiv = document.querySelector(".humanScore");
+const computerScoreDiv = document.querySelector(".computerScore");
+const gameWinnerDiv = document.querySelector(".gameWinner");
+const resetButton = document.createElement("button");
+
 let humanScore = 0;
 let computerScore = 0;
 let gameRound = 1;
 
-// display header and instructions
-console.log("%cFire, Water, Ice", "font-size:26px");
-console.log(`
-The first player to 5 points wins.
-Type fire, water, or ice to start the game.
-Note: choices must be in all lowercase!`);
+buttonContainer.addEventListener("click", event => {
+    let target = event.target;
 
-// randomize computer input and return
-function getComputerInput() {
-    let randomNumber = Math.random();
-
-    if (randomNumber <= 0.33) {
-        return computerInput = "fire";
-    } else if (randomNumber > 0.33 && randomNumber <= 0.66) {
-        return computerInput = "water";
-    } else {
-        return computerInput = "ice";
+    switch (target.id) {
+        case "fireBtn":
+            humanInput = "fire";
+            gameHandler();
+            return;
+        case "waterBtn":
+            humanInput = "water";
+            gameHandler();
+            break;
+        case "iceBtn":
+            humanInput = "ice";
+            gameHandler();
+            break;
     }
+});
+
+function gameHandler() {
+    roundNumberDiv.textContent = `--- Round ${gameRound} ---`;
+    computerInputDiv.textContent = `Computer chose ${getComputerInput()}.`;
+    compareInputs();
+    updateScoreAndRound();
+    checkScores();
 }
 
-// compare both inputs and return result
+function getComputerInput() {
+    let choices = ["fire", "water", "ice"];
+    let randomIndex = Math.floor(Math.random() * 3);
+    return computerInput = choices[randomIndex];
+}
+
 function compareInputs() {
-    // tie condition
     if (humanInput === computerInput) {
         return winCondition = "tie";
-    }
-    // human win condition
-    else if ((humanInput === "fire" && computerInput === "ice")
-    || (humanInput === "water" && computerInput === "fire")
-    || (humanInput === "ice" && computerInput === "water")) {
+    } else if (
+        (humanInput === "fire" && computerInput === "ice") ||
+        (humanInput === "water" && computerInput === "fire") ||
+        (humanInput === "ice" && computerInput === "water")
+    ) {
         return winCondition = "human";
-    }
-    // computer win condition
-    else {
+    } else {
         return winCondition = "computer";
     }
-
 }
 
-// update score and round based on winCondition
 function updateScoreAndRound() {
+    switch (winCondition) {
+        case "tie":
+            roundWinnerDiv.textContent = "It's a tie!";
+            break;
+        case "human":
+            humanScore++;
+            humanInput = capitalizeFirstLetter(humanInput);
+            roundWinnerDiv.textContent = `You win round ${gameRound}! ${humanInput} beats ${computerInput}.`;
+            break;
+        case "computer":
+            computerScore++;
+            computerInput = capitalizeFirstLetter(computerInput);
+            roundWinnerDiv.textContent = `Computer wins round ${gameRound}! ${computerInput} beats ${humanInput}.`;
+            break;
+    }
+    humanScoreDiv.textContent = `Your score: ${humanScore}`;
+    computerScoreDiv.textContent = `Computer's score: ${computerScore}`;
     gameRound++;
+}
 
-    if (winCondition === "tie") {
-        console.log("%cIt's a tie!", "font-size: 12px; color:white;");
-    } else if (winCondition === "human") {
-        humanInput = capitalizeFirstLetter(humanInput);
-        console.log(`%cHuman wins! ${humanInput} beats ${computerInput}.`, "font-size: 12px; color:#66ff8f");
-        humanScore++;
-    } else {
-        computerInput = capitalizeFirstLetter(computerInput);
-        console.log(`%cComputer wins! ${computerInput} beats ${humanInput}.`, "font-size: 12px; color:#ff6666");
-        computerScore++;
+function checkScores() {
+    if (humanScore === 5 || computerScore === 5) {
+        renderResetButton();
     }
-}
-
-// capitalize first letter of string
-function capitalizeFirstLetter(string) {
-    return string = string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-// play until either score reaches 5, then reset
-function playGame() {
-    if (humanScore < 5 && computerScore < 5) {
-        console.clear();
-        console.log(`--- Round ${gameRound} ---`);
-        console.log(`You chose ${humanInput}`);
-        console.log(`Computer chose ${getComputerInput()}`);
-        compareInputs();
-        updateScoreAndRound();
-        console.log(`Your score: ${humanScore} | Computer score: ${computerScore}`);
-        checkScore();
-    } else {
-        resetGame();
-        playGame();
-    }
-}
-
-// check overall score for a winner
-function checkScore() {
     if (humanScore === 5) {
-        console.log(`%cGame over! You win!`, "font-size:18px; color:#66ff8f");
-        console.log("Type fire, water, or ice to begin a new game.")
+        gameWinnerDiv.textContent = "Game over! You win!";
     } else if (computerScore === 5) {
-        console.log(`%cGame over! Computer wins!`, "font-size:18px; color:#ff6666");
-        console.log("Type fire, water, or ice to begin a new game.")
-    } else {
-        console.log("Type fire, water, or ice to start another round.");
+        gameWinnerDiv.textContent = "Game over! Computer wins!";
     }
 }
 
-// resets game
+function checkScores() {
+    switch (5) {
+        case humanScore || computerScore:
+            renderResetButton();
+        case humanScore:
+    }
+}
+
+function renderResetButton() {
+    resetButton.textContent = "RESET";
+    resetButton.classList.add("button");
+    document.body.appendChild(resetButton);
+    resetButton.addEventListener("click", resetGame);
+}
+
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
     gameRound = 1;
+    roundNumberDiv.textContent = "";
+    computerInputDiv.textContent = "";
+    roundWinnerDiv.textContent = "";
+    humanScoreDiv.textContent = "";
+    computerScoreDiv.textContent = "";
+    gameWinnerDiv.textContent = "";
+    resetButton.remove();
 }
 
-// listens for "fire" to be entered into console
-Object.defineProperty(window, "fire", {
-  get: function () {
-      humanInput = "fire";
-      playGame();
-  }
-});
-
-// listens for "water" to be entered into console
-Object.defineProperty(window, "water", {
-  get: function () {
-      humanInput = "water";
-      playGame();
-  }
-});
-
-// listens for "ice" to be entered into console
-Object.defineProperty(window, "ice", {
-  get: function () {
-      humanInput = "ice";
-      playGame();
-  }
-});
+function capitalizeFirstLetter(string) {
+    return string = string.charAt(0).toUpperCase() + string.slice(1);
+}
