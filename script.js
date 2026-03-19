@@ -83,21 +83,15 @@ function updateScoreAndRound() {
 }
 
 function checkScores() {
-    if (humanScore === 5 || computerScore === 5) {
-        renderResetButton();
-    }
-    if (humanScore === 5) {
-        gameWinnerDiv.textContent = "Game over! You win!";
-    } else if (computerScore === 5) {
-        gameWinnerDiv.textContent = "Game over! Computer wins!";
-    }
-}
-
-function checkScores() {
     switch (5) {
         case humanScore || computerScore:
             renderResetButton();
         case humanScore:
+            gameWinnerDiv.textContent = "Game over! You win!";
+            break;
+        case computerScore:
+            gameWinnerDiv.textContent = "Game over! Computer wins!";
+            break;
     }
 }
 
