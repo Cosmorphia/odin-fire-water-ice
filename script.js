@@ -1,5 +1,6 @@
 // ui
 
+const roundText = document.querySelector(".roundText");
 const choicesContainer = document.querySelector(".choicesContainer");
 const gameButton = document.querySelectorAll(".gameButton");
 const fireButton = document.querySelector("#fireButton");
@@ -12,7 +13,6 @@ const humanIceSubtext = document.querySelector("#humanIceSubtext");
 const computerFireSubtext = document.querySelector("#computerFireSubtext");
 const computerWaterSubtext = document.querySelector("#computerWaterSubtext");
 const computerIceSubtext = document.querySelector("#computerIceSubtext");
-const roundText = document.querySelector(".roundText");
 const resetButton = document.querySelector(".resetButton");
 const winnerText = document.querySelector(".winnerText");
 const humanScoreText = document.querySelector("#humanScoreText");
@@ -34,9 +34,11 @@ function gameButtonMouseEnter(event) {
         case "fireButton":
             fireButton.src = "./images/fireAnim.gif";
             break;
+
         case "waterButton":
             waterButton.src = "./images/waterAnim.gif";
             break;
+
         case "iceButton":
             iceButton.src = "./images/iceAnim.gif";
             break;
@@ -50,9 +52,11 @@ function gameButtonMouseLeave(event) {
         case "fireButton":
             fireButton.src = "./images/fire.png";
             break;
+
         case "waterButton":
             waterButton.src = "./images/water.png";
             break;
+
         case "iceButton":
             iceButton.src = "./images/ice.png";
             break;
@@ -67,10 +71,12 @@ function gameButtonClick(event) {
             humanInput = "fire";
             gameHandler();
             break;
+
         case "waterButton":
             humanInput = "water";
             gameHandler();
             break;
+
         case "iceButton":
             humanInput = "ice";
             gameHandler();
@@ -87,9 +93,11 @@ function displayInputs() {
         case "fire":
             humanFireSubtext.textContent = "you";
             break;
+
         case "water":
             humanWaterSubtext.textContent = "you";
             break;
+
         case "ice":
             humanIceSubtext.textContent = "you";
             break;
@@ -98,9 +106,11 @@ function displayInputs() {
         case "fire":
             computerFireSubtext.textContent = "cpu";
             break;
+
         case "water":
             computerWaterSubtext.textContent = "cpu";
             break;
+
         case "ice":
             computerIceSubtext.textContent = "cpu";
             break;
@@ -115,11 +125,13 @@ function displayScoreAndRound(winCondition) {
         case "tie":
             winnerText.textContent = "It's a tie!";
             break;
+            
         case "human":
             winnerText.classList.add("winColor");
             humanScoreText.textContent = `Your score: ${humanScore}`;
             winnerText.textContent = "You win!";
             break;
+
         case "computer":
             winnerText.classList.add("loseColor");
             computerScoreText.textContent = `CPU score: ${computerScore}`;
@@ -134,6 +146,7 @@ function displayWinner(winner) {
             winnerText.classList.add("winColor");
             winnerText.textContent = "Game over, you win!";
             break;
+            
         case "computer":
             winnerText.classList.add("loseColor");
             winnerText.textContent = "Game over, CPU wins!";
@@ -182,7 +195,7 @@ function resetUI() {
     for (const para of buttonSubtext) {
         para.textContent = "";
     }
-    
+
     resetButton.classList.add("hidden");
     
     humanScoreText.textContent = "Your score: 0";
@@ -229,10 +242,12 @@ function updateScoreAndRound(winCondition) {
         case "tie":
             displayScoreAndRound("tie");
             break;
+
         case "human":
             humanScore++;
             displayScoreAndRound("human");
             break;
+            
         case "computer":
             computerScore++;
             displayScoreAndRound("computer");
