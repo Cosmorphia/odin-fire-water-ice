@@ -1,3 +1,10 @@
+/* global styles */
+
+@font-face {
+    font-family: BoldPixels;
+    src: url(./fonts/BoldsPixels.ttf);
+}
+
 html {
     box-sizing: border-box;
 }
@@ -11,7 +18,196 @@ html {
 }
 
 body {
-    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #06070a;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: BoldPixels, "Courier New", Courier, monospace;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+}
+
+/* main */
+
+.header {
+    padding: 15px 30px;
+    border: 5px solid white;
+    border-top: none;
+    text-shadow: 0 5px #a0c3ff40;
+    box-shadow: 0 5px #a0c3ff40;
+    font-size: 54px;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoText {
+    margin-top: 20px;
+    color: #acb2bf;
+    font-size: 24px;
+}
+
+.legendList {
+    margin-top: 20px;
+}
+
+.legendText {
+    padding: 5px 20px;
+    display: inline;
+    font-size: 18px;
+    color: #acb2bf;
+}
+
+.legendText:nth-child(-n + 2) {
+    border-right: 3px solid #acb2bf;
+}
+
+.legendEm {
+    font-size: 24px;
+}
+
+#legendEmFire {
+    color: #ffc45e;
+    text-shadow: 0 0 10px #ff4d00;
+}
+
+#legendEmIce {
+    color: #64ebdb;
+    text-shadow: 0 0 10px #01b5b5;
+}
+
+#legendEmWater {
+    color: #68c0ff;
+    text-shadow: 0 0 10px #0179b5;
+}
+
+.roundText {
+    margin-top: 50px;
+    font-size: 48px;
+    text-shadow: 0 3px #a0c3ff40;
+}
+
+.choicesContainer {
+    margin-top: 20px;
+    padding: 35px 20px 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 50px;
+    image-rendering: pixelated;
+    border: 5px solid white;
+    box-shadow: 0 5px #a0c3ff40;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.gameButton {
+    flex: 1;
+    max-height: min-content;
+}
+
+.buttonImg {
+    width: 150px;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.hoverActive:hover {
+    transform: translateY(-5px);
+}
+
+.buttonSubtextContainer {
+    min-height: 20px;
+}
+
+.buttonSubtext {
+    font-size: 20px;
+    display: inline;
+}
+
+.resetButton {
+    padding: 5px 15px;
+    border: 3px solid white;
+    border-top: none;
+    box-shadow: 0 5px #a0c3ff40;
+    background-color: #06070a;
+    color: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+    font-size: 24px;
+}
+
+.winnerText {
+    min-height: 48px;
+    margin-top: 40px;
+    font-size: 48px;
+    text-shadow: 0 3px #a0c3ff40;
+}
+
+.scoreContainer {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    font-size: 28px;
+    color: #acb2bf;
+}
+
+#humanScoreText {
+    border-right: 3px solid #acb2bf;
+    padding-right: 15px;
+}
+
+.footer {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    text-shadow: 0 3px #a0c3ff40;
+}
+
+.footerImg {
+    width: 30px;
+    height: auto;
+}
+
+/* js styles */
+
+.winColor {
+    color: #51c551;
+    text-shadow: 0 3px #51c55140;
+}
+
+.loseColor {
+    color: #ff3e3e;
+    text-shadow: 0 3px #ff3e3e40;
+}
+
+.hidden {
+    visibility: hidden;
 }

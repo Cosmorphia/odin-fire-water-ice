@@ -1,44 +1,205 @@
-const buttonContainer = document.querySelector(".buttonContainer");
-const fireBtn = document.querySelector("#fireBtn");
-const waterBtn = document.querySelector("#waterBtn");
-const iceBtn = document.querySelector("#iceBtn");
-const roundNumberDiv = document.querySelector(".roundNumber");
-const roundWinnerDiv = document.querySelector(".roundWinner");
-const computerInputDiv = document.querySelector(".computerInputDiv");
-const humanScoreDiv = document.querySelector(".humanScore");
-const computerScoreDiv = document.querySelector(".computerScore");
-const gameWinnerDiv = document.querySelector(".gameWinner");
-const resetButton = document.createElement("button");
+// ui
+
+const choicesContainer = document.querySelector(".choicesContainer");
+const gameButton = document.querySelectorAll(".gameButton");
+const fireButton = document.querySelector("#fireButton");
+const waterButton = document.querySelector("#waterButton");
+const iceButton = document.querySelector("#iceButton");
+const buttonSubtext = document.querySelectorAll(".buttonSubtext");
+const humanFireSubtext = document.querySelector("#humanFireSubtext");
+const humanWaterSubtext = document.querySelector("#humanWaterSubtext");
+const humanIceSubtext = document.querySelector("#humanIceSubtext");
+const computerFireSubtext = document.querySelector("#computerFireSubtext");
+const computerWaterSubtext = document.querySelector("#computerWaterSubtext");
+const computerIceSubtext = document.querySelector("#computerIceSubtext");
+const roundText = document.querySelector(".roundText");
+const resetButton = document.querySelector(".resetButton");
+const winnerText = document.querySelector(".winnerText");
+const humanScoreText = document.querySelector("#humanScoreText");
+const computerScoreText = document.querySelector("#computerScoreText");
+
+fireButton.addEventListener("mouseenter", gameButtonMouseEnter);
+waterButton.addEventListener("mouseenter", gameButtonMouseEnter);
+iceButton.addEventListener("mouseenter", gameButtonMouseEnter);
+fireButton.addEventListener("mouseleave", gameButtonMouseLeave);
+waterButton.addEventListener("mouseleave", gameButtonMouseLeave);
+iceButton.addEventListener("mouseleave", gameButtonMouseLeave);
+choicesContainer.addEventListener("click", gameButtonClick);
+resetButton.addEventListener("click", resetVariables);
+
+function gameButtonMouseEnter(event) {
+    let target = event.target;
+
+    switch (target.id) {
+        case "fireButton":
+            fireButton.src = "./images/fireAnim.gif";
+            break;
+        case "waterButton":
+            waterButton.src = "./images/waterAnim.gif";
+            break;
+        case "iceButton":
+            iceButton.src = "./images/iceAnim.gif";
+            break;
+    }
+}
+
+function gameButtonMouseLeave(event) {
+    let target = event.target;
+
+    switch (target.id) {
+        case "fireButton":
+            fireButton.src = "./images/fire.png";
+            break;
+        case "waterButton":
+            waterButton.src = "./images/water.png";
+            break;
+        case "iceButton":
+            iceButton.src = "./images/ice.png";
+            break;
+    }
+}
+
+function gameButtonClick(event) {
+    let target = event.target;
+
+    switch (target.id) {
+        case "fireButton":
+            humanInput = "fire";
+            gameHandler();
+            break;
+        case "waterButton":
+            humanInput = "water";
+            gameHandler();
+            break;
+        case "iceButton":
+            humanInput = "ice";
+            gameHandler();
+            break;
+    }
+}
+
+function displayInputs() {
+    for (const para of buttonSubtext) {
+        para.textContent = "";
+    }
+
+    switch (humanInput) {
+        case "fire":
+            humanFireSubtext.textContent = "you";
+            break;
+        case "water":
+            humanWaterSubtext.textContent = "you";
+            break;
+        case "ice":
+            humanIceSubtext.textContent = "you";
+            break;
+    }
+    switch (computerInput) {
+        case "fire":
+            computerFireSubtext.textContent = "cpu";
+            break;
+        case "water":
+            computerWaterSubtext.textContent = "cpu";
+            break;
+        case "ice":
+            computerIceSubtext.textContent = "cpu";
+            break;
+    }
+}
+
+function displayScoreAndRound(winCondition) {
+    roundText.textContent = `Round ${gameRound}`;
+    winnerText.classList.remove("winColor", "loseColor");
+
+    switch (winCondition) {
+        case "tie":
+            winnerText.textContent = "It's a tie!";
+            break;
+        case "human":
+            winnerText.classList.add("winColor");
+            humanScoreText.textContent = `Your score: ${humanScore}`;
+            winnerText.textContent = "You win!";
+            break;
+        case "computer":
+            winnerText.classList.add("loseColor");
+            computerScoreText.textContent = `CPU score: ${computerScore}`;
+            winnerText.textContent = "CPU wins...";
+            break;
+    }
+}
+
+function displayWinner(winner) {
+    switch (winner) {
+        case "human":
+            winnerText.classList.add("winColor");
+            winnerText.textContent = "Game over, you win!";
+            break;
+        case "computer":
+            winnerText.classList.add("loseColor");
+            winnerText.textContent = "Game over, CPU wins!";
+            break;
+    }
+}
+
+function displayResetButton() {
+    resetButton.classList.remove("hidden");
+}
+
+function disableGameButtons() {
+    for (const btn of gameButton) {
+        btn.setAttribute("disabled", "");
+    }
+
+    fireButton.removeEventListener("mouseenter", gameButtonMouseEnter);
+    waterButton.removeEventListener("mouseenter", gameButtonMouseEnter);
+    iceButton.removeEventListener("mouseenter", gameButtonMouseEnter);
+
+    // prevent imgs getting stuck on hover anim
+    fireButton.src = "./images/fire.png";
+    waterButton.src = "./images/water.png";
+    iceButton.src = "./images/ice.png";
+
+    fireButton.classList.remove("hoverActive");
+    waterButton.classList.remove("hoverActive");
+    iceButton.classList.remove("hoverActive");
+}
+
+function resetUI() {
+    winnerText.textContent = "";
+    roundText.textContent = "Round 1";
+    
+    for (const btn of gameButton) {
+        btn.removeAttribute("disabled");
+    }
+
+    fireButton.addEventListener("mouseenter", gameButtonMouseEnter);
+    waterButton.addEventListener("mouseenter", gameButtonMouseEnter);
+    iceButton.addEventListener("mouseenter", gameButtonMouseEnter);
+    fireButton.classList.add("hoverActive");
+    waterButton.classList.add("hoverActive");
+    iceButton.classList.add("hoverActive");
+    
+    for (const para of buttonSubtext) {
+        para.textContent = "";
+    }
+    
+    resetButton.classList.add("hidden");
+    
+    humanScoreText.textContent = "Your score: 0";
+    computerScoreText.textContent = "CPU score: 0";
+}
+
+// game logic
 
 let humanScore = 0;
 let computerScore = 0;
 let gameRound = 1;
 
-buttonContainer.addEventListener("click", event => {
-    let target = event.target;
-
-    switch (target.id) {
-        case "fireBtn":
-            humanInput = "fire";
-            gameHandler();
-            return;
-        case "waterBtn":
-            humanInput = "water";
-            gameHandler();
-            break;
-        case "iceBtn":
-            humanInput = "ice";
-            gameHandler();
-            break;
-    }
-});
-
 function gameHandler() {
-    roundNumberDiv.textContent = `--- Round ${gameRound} ---`;
-    computerInputDiv.textContent = `Computer chose ${getComputerInput()}.`;
+    getComputerInput();
+    displayInputs();
     compareInputs();
-    updateScoreAndRound();
-    checkScores();
+    isGameOver();
 }
 
 function getComputerInput() {
@@ -49,72 +210,51 @@ function getComputerInput() {
 
 function compareInputs() {
     if (humanInput === computerInput) {
-        return winCondition = "tie";
+        updateScoreAndRound("tie");
     } else if (
         (humanInput === "fire" && computerInput === "ice") ||
         (humanInput === "water" && computerInput === "fire") ||
         (humanInput === "ice" && computerInput === "water")
     ) {
-        return winCondition = "human";
+        updateScoreAndRound("human");
     } else {
-        return winCondition = "computer";
+        updateScoreAndRound("computer");
     }
 }
 
-function updateScoreAndRound() {
+function updateScoreAndRound(winCondition) {
+    gameRound++;
+    
     switch (winCondition) {
         case "tie":
-            roundWinnerDiv.textContent = "It's a tie!";
+            displayScoreAndRound("tie");
             break;
         case "human":
             humanScore++;
-            humanInput = capitalizeFirstLetter(humanInput);
-            roundWinnerDiv.textContent = `You win round ${gameRound}! ${humanInput} beats ${computerInput}.`;
+            displayScoreAndRound("human");
             break;
         case "computer":
             computerScore++;
-            computerInput = capitalizeFirstLetter(computerInput);
-            roundWinnerDiv.textContent = `Computer wins round ${gameRound}! ${computerInput} beats ${humanInput}.`;
-            break;
-    }
-    humanScoreDiv.textContent = `Your score: ${humanScore}`;
-    computerScoreDiv.textContent = `Computer's score: ${computerScore}`;
-    gameRound++;
-}
-
-function checkScores() {
-    switch (5) {
-        case humanScore || computerScore:
-            renderResetButton();
-        case humanScore:
-            gameWinnerDiv.textContent = "Game over! You win!";
-            break;
-        case computerScore:
-            gameWinnerDiv.textContent = "Game over! Computer wins!";
+            displayScoreAndRound("computer");
             break;
     }
 }
 
-function renderResetButton() {
-    resetButton.textContent = "RESET";
-    resetButton.classList.add("button");
-    document.body.appendChild(resetButton);
-    resetButton.addEventListener("click", resetGame);
+function isGameOver() {
+    if (humanScore === 5 || computerScore === 5) {
+        displayResetButton();
+        disableGameButtons();
+    }
+    if (humanScore === 5) {
+        displayWinner("human");
+    } else if (computerScore === 5) {
+        displayWinner("computer");
+    }
 }
 
-function resetGame() {
+function resetVariables() {
     humanScore = 0;
     computerScore = 0;
     gameRound = 1;
-    roundNumberDiv.textContent = "";
-    computerInputDiv.textContent = "";
-    roundWinnerDiv.textContent = "";
-    humanScoreDiv.textContent = "";
-    computerScoreDiv.textContent = "";
-    gameWinnerDiv.textContent = "";
-    resetButton.remove();
-}
-
-function capitalizeFirstLetter(string) {
-    return string = string.charAt(0).toUpperCase() + string.slice(1);
+    resetUI();
 }

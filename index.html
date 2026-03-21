@@ -8,16 +8,56 @@
     <title>Fire Water Ice</title>
 </head>
 <body>
-    <div class="buttonContainer">
-        <button class="button" id="fireBtn">FIRE</button>
-        <button class="button" id="waterBtn">WATER</button>
-        <button class="button" id="iceBtn">ICE</button>
+    <h1 class="header">FIRE WATER ICE</h1>
+    <div class="main">
+        <h2 class="infoText">First player to 5 points wins!</h2>
+        <ul class="legendList">
+            <li class="legendText"><span class="legendEm" id="legendEmFire">FIRE</span> beats ice</li>
+            <li class="legendText"><span class="legendEm" id="legendEmWater">WATER</span> beats fire</li>
+            <li class="legendText"><span class="legendEm" id="legendEmIce">ICE</span> beats water</li>
+        </ul>
+        <p class="roundText">Round 1</p>
+        <div class="choicesContainer">
+            <div class="buttonContainer">
+                <button class="gameButton">
+                    <img class="buttonImg hoverActive" id="fireButton" src="./images/fire.png" alt="Fire" width="27" height="29">
+                </button>
+                <div class="buttonSubtextContainer">
+                    <p class="buttonSubtext winColor" id="humanFireSubtext"></p>
+                    <p class="buttonSubtext loseColor" id="computerFireSubtext"></p>
+                </div>
+            </div>
+            <div class="buttonContainer">
+                <button class="gameButton">
+                    <img class="buttonImg hoverActive" id="waterButton" src="./images/water.png" alt="Water" width="26" height="23">
+                </button>
+                <div class="buttonSubtextContainer">
+                    <p class="buttonSubtext winColor" id="humanWaterSubtext"></p>
+                    <p class="buttonSubtext loseColor" id="computerWaterSubtext"></p>
+                </div>
+            </div>
+            <div class="buttonContainer">
+                <button class="gameButton">
+                    <img class="buttonImg hoverActive" id="iceButton" src="./images/ice.png" alt="Ice" width="25" height="25">
+                </button>
+                <div class="buttonSubtextContainer">
+                    <p class="buttonSubtext winColor" id="humanIceSubtext"></p>
+                    <p class="buttonSubtext loseColor" id="computerIceSubtext"></p>
+                </div>
+            </div>
+        </div>
+        <button class="resetButton hidden">RESET</button>
+        <p class="winnerText"></p>
+        <div class="scoreContainer">
+            <p id="humanScoreText">Your score: 0</p>
+            <p id="computerScoreText">CPU score: 0</p>
+        </div>
     </div>
-    <div class="roundNumber"></div>
-    <div class="computerInputDiv"></div>
-    <div class="roundWinner"></div>
-    <div class="humanScore"></div>
-    <div class="computerScore"></div>
-    <div class="gameWinner"></div>
+    <div class="footer">
+        <p>Made by Cosmorphia</p>
+        <a class="footerLink" href="https://github.com/Cosmorphia/odin-fire-water-ice" target="_blank" rel="noreferrer">
+            <img class="footerImg" src="./images/github.svg" alt="Github logo" width="98" height="96">
+        </a>
+    </div>
 </body>
 </html>
