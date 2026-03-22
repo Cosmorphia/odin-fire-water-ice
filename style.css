@@ -245,3 +245,29 @@ img {
 .hoverActive:hover {
     transform: translateY(-0.3125rem);
 }
+
+/* media queries */
+
+@media (max-width: 660px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 580px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 490px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    html {
+        font-size: 8px;
+    }
+}
