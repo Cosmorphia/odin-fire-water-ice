@@ -49,44 +49,44 @@ img {
 /* main */
 
 .header {
-    padding: 15px 30px;
-    text-shadow: 0 5px #a0c3ff40;
-    font-size: 54px;
+    padding: 0.9375rem 1.875rem;
+    text-shadow: 0 0.3125rem #a0c3ff40;
+    font-size: 3.375rem;
 }
 
 .legendText {
-    padding: 5px 20px;
-    font-size: 18px;
+    padding: 0.3125rem 1.25rem;
+    font-size: 1.125rem;
 }
 
 #legendEmFire {
     color: #ffc45e;
-    text-shadow: 0 0 10px #ff4d00;
+    text-shadow: 0 0 1.6rem #ff4d00;
 }
 
 #legendEmIce {
     color: #64ebdb;
-    text-shadow: 0 0 10px #01b5b5;
+    text-shadow: 0 0 1.6rem #01b5b5;
 }
 
 #legendEmWater {
     color: #68c0ff;
-    text-shadow: 0 0 10px #0179b5;
+    text-shadow: 0 0 1.6rem #0179b5;
 }
 
 .roundText {
-    margin-top: 50px;
+    margin-top: 3.125rem;
 }
 
 .choicesContainer {
-    padding: 35px 20px 15px 20px;
+    padding: 2.1875rem 1.25rem 0.9375rem 1.25rem;
     justify-content: center;
     align-items: baseline;
-    gap: 50px;
+    gap: 3.125rem;
 }
 
 .buttonContainer {
-    padding: 10px;
+    padding: 0.625rem;
 }
 
 .gameButton {
@@ -94,39 +94,39 @@ img {
 }
 
 .buttonImg {
-    width: 150px;
+    width: 9.375rem;
     image-rendering: pixelated;
 }
 
 .buttonSubtextContainer {
-    min-height: 20px;
+    min-height: 1.25rem;
 }
 
 .resetButton {
-    padding: 5px 15px;
-    border: 3px solid white;
+    padding: 0.3125rem 0.9375rem;
+    border: 0.1875rem solid white;
     background-color: #06070a;
 }
 
 .winnerText {
-    min-height: 48px;
+    min-height: 3rem;
 }
 
 .scoreContainer {
-    gap: 20px;
-    font-size: 28px;
+    gap: 1.25rem;
+    font-size: 1.75rem;
 }
 
 #humanScoreText {
-    padding-right: 15px;
+    padding-right: 0.9375rem;
 }
 
 .footer {
-    padding: 10px 0;
+    padding: 0.625rem 0;
 }
 
 .footerImg {
-    width: 30px;
+    width: 1.875rem;
 }
 
 /* shared styles */
@@ -134,7 +134,7 @@ img {
 .header,
 .choicesContainer,
 .resetButton {
-    border: 5px solid white;
+    border: 0.3125rem solid white;
 }
 
 .header,
@@ -145,7 +145,7 @@ img {
 .header,
 .choicesContainer,
 .resetButton {
-    box-shadow: 0 5px #a0c3ff40;
+    box-shadow: 0 0.3125rem #a0c3ff40;
 }
 
 .main,
@@ -174,7 +174,7 @@ img {
 .infoText,
 .legendList,
 .choicesContainer {
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 
 .infoText,
@@ -186,7 +186,7 @@ img {
 .infoText,
 .legendEm,
 .resetButton {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .legendText,
@@ -196,24 +196,24 @@ img {
 
 .legendText:nth-child(-n + 2),
 #humanScoreText {
-    border-right: 3px solid #acb2bf;
+    border-right: 0.1875rem solid #acb2bf;
 }
 
 .roundText,
 .winnerText {
-    font-size: 48px;
+    font-size: 3rem;
 }
 
 .roundText,
 .winnerText,
 .footer {
-    text-shadow: 0 3px #a0c3ff40;
+    text-shadow: 0 0.1875rem #a0c3ff40;
 }
 
 .buttonContainer,
 .footer {
-    gap: 10px;
-    font-size: 20px;
+    gap: 0.625rem;
+    font-size: 1.25rem;
 }
 
 .buttonImg,
@@ -223,19 +223,19 @@ img {
 
 .scoreContainer,
 .winnerText {
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 /* js styles */
 
 .winColor {
     color: #51c551;
-    text-shadow: 0 3px #51c55140;
+    text-shadow: 0 0.1875rem #51c55140;
 }
 
 .loseColor {
     color: #ff3e3e;
-    text-shadow: 0 3px #ff3e3e40;
+    text-shadow: 0 0.1875rem #ff3e3e40;
 }
 
 .hidden {
@@ -243,5 +243,5 @@ img {
 }
 
 .hoverActive:hover {
-    transform: translateY(-5px);
+    transform: translateY(-0.3125rem);
 }
